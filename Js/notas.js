@@ -1,3 +1,4 @@
+// Verificar si está autenticado al cargar la página
 document.addEventListener('DOMContentLoaded', function() {
     console.log('=== INICIANDO CARGA DE NOTAS ===');
     
@@ -13,13 +14,16 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         const userData = JSON.parse(user);
         console.log('✅ Usuario parseado:', userData);
-
+        
+        // Mostrar información del usuario
         document.getElementById('userCode').textContent = `Código: ${userData.codigo}`;
         document.getElementById('userName').textContent = `Nombre: ${userData.nombre}`;
         
+        // Cargar notas del estudiante
         console.log('🔄 Cargando notas para código:', userData.codigo);
         loadNotas(userData.codigo);
         
+        // Manejar cierre de sesión
         document.getElementById('logoutBtn').addEventListener('click', function() {
             localStorage.removeItem('user');
             window.location.href = 'index.html';
@@ -35,6 +39,7 @@ function loadNotas(codigo) {
     const url = `https://24a0dac0-2579-4138-985c-bec2df4bdfcc-00-3unzo70c406dl.riker.replit.dev/students/${codigo}/notas`;
     console.log('📡 Haciendo petición a:', url);
     
+    // Mostrar mensaje de carga
     const notasBody = document.getElementById('notasBody');
     notasBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: blue;">Cargando notas...</td></tr>';
     
@@ -67,6 +72,7 @@ function loadNotas(codigo) {
         .then(data => {
             console.log('✅ Datos recibidos:', data);
             
+            // EXTRAER EL ARRAY DE NOTAS DEL OBJETO
             let notasArray = [];
             
             if (data && data.notas && Array.isArray(data.notas)) {
@@ -97,10 +103,12 @@ function loadNotas(codigo) {
         });
 }
 
+// Función para convertir string con coma a número
 function convertirNota(notaString) {
     if (!notaString && notaString !== 0) return 0;
     if (typeof notaString === 'number') return notaString;
     
+    // Reemplazar coma por punto y convertir a número
     const numero = parseFloat(notaString.toString().replace(',', '.'));
     return isNaN(numero) ? 0 : numero;
 }
@@ -130,10 +138,12 @@ function displayNotas(notas) {
     
     notas.forEach((asignatura, index) => {
         console.log(`Asignatura ${index + 1}:`, asignatura);
-    
+        
+        // MAPEAR Y CONVERTIR LAS NOTAS
         const nombre = asignatura.asignatura || asignatura.nombre || 'N/A';
         const creditos = asignatura.creditos || '0';
         
+        // CONVERTIR strings con comas a números
         const P1 = convertirNota(asignatura.n1 || asignatura.P1);
         const P2 = convertirNota(asignatura.n2 || asignatura.P2);
         const P3 = convertirNota(asignatura.n3 || asignatura.P3);
@@ -183,6 +193,7 @@ function calcularPromedioPonderado(notas) {
     let totalCreditos = 0;
     
     notas.forEach(asignatura => {
+        // Convertir las notas
         const P1 = convertirNota(asignatura.n1 || asignatura.P1);
         const P2 = convertirNota(asignatura.n2 || asignatura.P2);
         const P3 = convertirNota(asignatura.n3 || asignatura.P3);
