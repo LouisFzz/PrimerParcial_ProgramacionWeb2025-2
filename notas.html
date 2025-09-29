@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Css/style.css"/>
+    <script type="text/javascript" src="Js/notas.js" defer></script>
+    <link rel="icon" sizes="32x32" type="image/icon" href="Img/icon.png">
+    <title>Consulta de Notas</title>
+</head>
+<body>
+    <div class="notas-container">
+        <header>
+            <h1>Consulta de Notas</h1>
+            <div class="user-info">
+                <span id="userCode"></span>
+                <span id="userName"></span>
+                <button id="logoutBtn">Cerrar Sesión</button>
+            </div>
+        </header>
+        
+        <div class="table-container">
+            <table id="notasTable">
+                <thead>
+                    <tr>
+                        <th>Asignatura</th>
+                        <th>Créditos</th>
+                        <th>P1</th>
+                        <th>P2</th>
+                        <th>P3</th>
+                        <th>EF</th>
+                        <th>Definitiva</th>
+                    </tr>
+                </thead>
+                <tbody id="notasBody">
+                    <!-- Las notas se cargarán aquí dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="promedio-container">
+            <h2>Promedio Ponderado: <span id="promedioPonderado">-</span></h2>
+        </div>
+    </div>
+</body>
+</html>
