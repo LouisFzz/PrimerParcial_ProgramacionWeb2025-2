@@ -1,4 +1,4 @@
-#Errores Cometidos
+# Errores Cometidos
 Hola Profesor Carlos René, en el desarrollo del parcial se me pasaron por alto dos errores debido a los nervios y al tiempo:
 
 1.En todo momento estuve probando con el codigo 1151158, cuando pude cargar las notas subi todo, pero despues al seguir probando con otros codigos no cargaba la tabla, estuve buscando y al parecer se debe a que no limpiaba los datos del usuario anterior.
